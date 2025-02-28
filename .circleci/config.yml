@@ -8,13 +8,13 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: |
+          command: pip install -r requirements.txt
             python -m venv venv
             source venv/bin/activate
             pip install -r requirements.txt
       - run:
           name: Run Tests
-          command: |
+          command: pytest test_HW_04a_API.py
             source venv/bin/activate
             pytest --cov=your_project_folder
 
