@@ -2,7 +2,6 @@ import json
 from HW_04a_API import details
 from unittest.mock import patch
 
-
 mocked_repos_data = json.dumps([
     {"name": "csp"},
     {"name": "hellogitworld"},
@@ -14,8 +13,6 @@ mocked_repos_data = json.dumps([
     {"name": "try_nbdev"},
     {"name": "try_nbdev2"},
 ])
-
-
 mocked_commit_data = json.dumps([{"comments_url": "dummy_url"}] * 50)
 
 
@@ -27,8 +24,6 @@ def test_status_code_404_invalid_id(mock_get):
 
 @patch("requests.get")
 def test_working_API_Example(mock_get):
-    
-    
     def mock_requests_get(url, *args, **kwargs):
         if "repos" in url and "users" in url:
             mock_response = patch("requests.Response")
@@ -46,7 +41,6 @@ def test_working_API_Example(mock_get):
             return mock_response
 
     mock_get.side_effect = mock_requests_get
-
     expected_data = """Repository name: csp, Commits: 50
 Repository name: hellogitworld, Commits: 50
 Repository name: helloworld, Commits: 50
@@ -57,5 +51,4 @@ Repository name: threads-of-life, Commits: 50
 Repository name: try_nbdev, Commits: 50
 Repository name: try_nbdev2, Commits: 50
 """
-
     assert details("richkempinski") == expected_data
