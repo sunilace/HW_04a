@@ -1,7 +1,7 @@
 import json
 from HW_04a_API import details
 from unittest.mock import patch
-
+mocked_commit_data = json.dumps([{"comments_url": "dummy_url"}] * 10)
 mocked_repos_data = json.dumps([
     {"name": "csp"},
     {"name": "hellogitworld"},
@@ -13,14 +13,11 @@ mocked_repos_data = json.dumps([
     {"name": "try_nbdev"},
     {"name": "try_nbdev2"},
 ])
-mocked_commit_data = json.dumps([{"comments_url": "dummy_url"}] * 50)
-
 
 @patch("requests.get")  # Mock requests.get globally in this test function
 def test_status_code_404_invalid_id(mock_get):
     mock_get.return_value.status_code = 404
     assert details("Invalid_Github_Id") == "Status Code: 404"
-
 
 @patch("requests.get")
 def test_working_API_Example(mock_get):
@@ -41,14 +38,14 @@ def test_working_API_Example(mock_get):
             return mock_response
 
     mock_get.side_effect = mock_requests_get
-    expected_data = """Repository name: csp, Commits: 50
-Repository name: hellogitworld, Commits: 50
-Repository name: helloworld, Commits: 50
-Repository name: Mocks, Commits: 50
-Repository name: Project1, Commits: 50
-Repository name: richkempinski.github.io, Commits: 50
-Repository name: threads-of-life, Commits: 50
-Repository name: try_nbdev, Commits: 50
-Repository name: try_nbdev2, Commits: 50
+    expected_data = """Repository name: csp, Commits: 10
+Repository name: hellogitworld, Commits: 10
+Repository name: helloworld, Commits: 10
+Repository name: Mocks, Commits: 10
+Repository name: Project1, Commits: 10
+Repository name: richkempinski.github.io, Commits: 10
+Repository name: threads-of-life, Commits: 10
+Repository name: try_nbdev, Commits: 10
+Repository name: try_nbdev2, Commits: 10
 """
     assert details("richkempinski") == expected_data
