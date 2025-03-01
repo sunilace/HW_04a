@@ -1,3 +1,4 @@
+import json
 from HW_04a_API import details
 from unittest.mock import patch
 
