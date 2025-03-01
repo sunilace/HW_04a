@@ -2,17 +2,8 @@ import json
 from HW_04a_API import details
 from unittest.mock import patch
 mocked_commit_data = json.dumps([{"comments_url": "dummy_url"}] * 10)
-mocked_repos_data = json.dumps([
-    {"name": "csp"},
-    {"name": "hellogitworld"},
-    {"name": "helloworld"},
-    {"name": "Mocks"},
-    {"name": "Project1"},
-    {"name": "richkempinski.github.io"},
-    {"name": "threads-of-life"},
-    {"name": "try_nbdev"},
-    {"name": "try_nbdev2"},
-])
+mocked_repos_data = json.dumps([{"name": "csp"},{"name": "hellogitworld"},{"name": "helloworld"},{"name": "Mocks"},{"name": "Project1"},
+    {"name": "richkempinski.github.io"},{"name": "threads-of-life"},{"name": "try_nbdev"},{"name": "try_nbdev2"},])
 
 @patch("requests.get")  # Mock requests.get globally in this test function
 def test_status_code_404_invalid_id(mock_get):
